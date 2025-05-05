@@ -1,0 +1,3 @@
+"""
+Base FastAPI SQLAlchemy project
+"""
