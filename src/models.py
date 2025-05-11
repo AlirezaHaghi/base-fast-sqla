@@ -2,11 +2,14 @@ from datetime import datetime
 from sqlalchemy import Boolean, DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
+
+
 class Base(DeclarativeBase):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now, onupdate=datetime.now)
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime, default=None)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    
     
 class User(Base):
     __tablename__ = "users"
