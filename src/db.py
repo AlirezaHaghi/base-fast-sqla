@@ -4,7 +4,7 @@ from .settings import settings
 
 engine = create_async_engine(
     settings.async_database_url,
-    echo=True,
+    # echo=True,
 )
 
 sessionmaker = async_sessionmaker(engine)
@@ -32,4 +32,12 @@ async def create_first_admin():
                 hashed_password=get_password_hash("alireza"),
                 is_admin=True,
             )
+            first_admin = await session.merge(first_admin)
+            
 
+
+    # async with sessionmaker.begin() as session:
+    #     stmt = sa.select(User).where(User.username == "alireza")
+    #     result = await session.execute(stmt)
+    #     first_admin = result.scalar_one_or_none()
+    #     print("first admin user:", first_admin)
